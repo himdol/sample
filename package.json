@@ -3,10 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "cross-env NODE_ENV=local nodemon --exec babel-node index.js",
+    "start:dev": "cross-env NODE_ENV=dev nodemon --exec babel-node index.js",
+    "start:prd": "cross-env NODE_ENV=prd nodemon --exec babel-node index.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
+    "cross-env": "^7.0.3",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",

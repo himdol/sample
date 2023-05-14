@@ -1,14 +1,14 @@
-import 'dotenv';
+require('dotenv').config();
 
 var mysql = require('mysql');
 
 /* mysql setting */
 const connection = mysql.createConnection({
-  host: process.env.HOST,
-  port: process.env.PORT,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE
+  host: process.env.DATABASE_HOST,
+  port: process.env.DATABASE_PORT,
+  user: process.env.DATABASE_DB_USER,
+  password: process.env.DATABASE_DB_PASSWORD,
+  database: process.env.DATABASE_DATABASE
 });
 
 connection.connect();
