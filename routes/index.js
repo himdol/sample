@@ -1,21 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-let path;
-var dotenv = require('dotenv');
-dotenv.config();
-
-console.log(process.env.TEST);
-
-switch (process.env.NODE_ENV) {
-  case "prd": path = `${__dirname}/.env.prd`;
-    break;
-  case "dev": path = `${__dirname}/.env.dev`;
-    break;
-  default: path = `${__dirname}/.env.local`;
-}
-
-dotenv.config({path: path});
+require('dotenv').config();
 
 const connection = mysql.createConnection({
   host: process.env.DATABASE_HOST,
@@ -27,20 +13,25 @@ const connection = mysql.createConnection({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  connection.connect();
-
   /* GET home page. */
   connection.query('SELECT * from Users', (error, rows) => {
     if (error) {
       console.log(error);
+      return;
     } else {
       console.log(rows);
+      // 결과를 이름 지정된 객체로 변환
+      const usersResult = rows.map(r => {
+        return {
+          id: r.id,
+          password: r.password,
+        };
+      });
+
+      res.render('index', { title: '구내식당', result: JSON.stringify(usersResult)});
     }
   });
 
-  connection.end();
-
-  res.render('index', { title: '구내식당' });
 });
 
 router.get('/aboutMe', function (req, res) {

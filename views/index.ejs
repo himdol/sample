@@ -9,20 +9,8 @@
 <form action="/search">
   <input type="text"/><button type="submit">검색</button>
 </form>
-
 <table>
-  <tr>
-    <th>
-      제목??
-    </th>
-  </tr>
-  <tr>
-    <td>
-      ??
-    </td>
-  </tr>
 </table>
-
 <button id="about-me">About Me</button>
 <button>Change the page</button>
 
@@ -30,6 +18,16 @@
   document.getElementById("about-me").addEventListener("click", function () {
     location.href = "/aboutMe";
   });
+
+  let usersResult = JSON.parse('<%- result %>'); // JSON 문자열을 JavaScript 객체로 변환
+  console.log(usersResult); // 사용할 수 있는 JavaScript 객체 확인
+
+  // 데이터 활용
+  usersResult.forEach(function(user) {
+    console.log(user.id, user.password);
+  });
+
+
 </script>
 </body>
 </html>
