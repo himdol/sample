@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h1><%= title %></h1>
+<form action="/search">
+  <input type="text"/><button type="submit">검색</button>
+</form>
+
+<table>
+  <tr>
+    <th>
+      제목??
+    </th>
+  </tr>
+  <tr>
+    <td>
+      ??
+    </td>
+  </tr>
+</table>
+
+<button id="about-me">About Me</button>
+<button>Change the page</button>
+
+<script>
+  document.getElementById("about-me").addEventListener("click", function () {
+    location.href = "/aboutMe";
+  });
+</script>
+</body>
 </html>
