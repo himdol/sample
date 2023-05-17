@@ -12,47 +12,47 @@ const connection = mysql.createConnection({
   database: process.env.DATABASE_DATABASE
 });
 
+// mail service
+// const main = async () => {
+//   let transporter = nodemailer.createTransport({
+//     service: 'gmail',
+//     host: 'smtp.gmail.com',
+//     host: 'smtp.gmail.com',
+//     port: 587,
+//     secure: false,
+//     auth: {
+//       user: "oohwhoa8832@gmail.com",
+//       pass: "jdeqnbffaangcvsp",
+//     },
+//   });
+//
+//   // send mail with defined transport object
+//   let info = await transporter.sendMail({
+//     // from: `"WDMA Team" <${process.env.NODEMAILER_USER}>`,
+//     from: `oowhoa8832@gmail.com`,
+//     to: `ihimchan746@amorepacific.com`,
+//     subject: 'TEST Email',
+//     text: "TESTSETSTESTTESTSET",
+//     html: ``,
+//   });
+//
+//   console.log('Message sent: %s', info.messageId);
+//   // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+//
+//   //#4. 전송 후 결과 단순 출력
+//   for(let key in info){
+//     console.log('키 : '+key + ', 값 : ' + info[key])
+//   }
+//
+//   // res.status(200).json({
+//   //   status: 'Success',
+//   //   code: 200,
+//   //   message: 'Sent Auth Email',
+//   // });
+//
+// };
 
-const main = async () => {
-  let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-      user: "oohwhoa8832@gmail.com",
-      pass: "jdeqnbffaangcvsp",
-    },
-  });
-
-  // send mail with defined transport object
-  let info = await transporter.sendMail({
-    // from: `"WDMA Team" <${process.env.NODEMAILER_USER}>`,
-    from: `oowhoa8832@gmail.com`,
-    to: `ihimchan746@amorepacific.com`,
-    subject: 'TEST Email',
-    text: "TESTSETSTESTTESTSET",
-    html: ``,
-  });
-
-  console.log('Message sent: %s', info.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-  //#4. 전송 후 결과 단순 출력
-  for(let key in info){
-    console.log('키 : '+key + ', 값 : ' + info[key])
-  }
-
-  // res.status(200).json({
-  //   status: 'Success',
-  //   code: 200,
-  //   message: 'Sent Auth Email',
-  // });
-
-};
-
-main().catch(console.error);
+// main().catch(console.error);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {

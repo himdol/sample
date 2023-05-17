@@ -6,8 +6,20 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const schedule = require('node-schedule');
 
 var app = express();
+
+app.get('/', function (req, res) {
+  res.send('Hello World');
+})
+
+app.listen(3000, function(){
+  console.log('Express start on port 3000!');
+  schedule.scheduleJob('* * * * * *', function(){
+    console.log('The answer to life, the universe, and everything!');
+  });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +49,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 
 module.exports = app;
