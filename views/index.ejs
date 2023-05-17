@@ -7,56 +7,56 @@
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
-<div class="container">
-    <div class="shadow p-3 mb-5 bg-body-tertiary rounded"><%= title %></div>
-    <form action="/search">
-        <div class="wd-100" style="">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="검색 단어" aria-label="Recipient's username"
-                       aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>
-            </div>
+<div class="container d-flex flex-column justify-content-center align-items-center">
+    <h1 class="mb-5">OOH WHOA</h1>
+    <div class="text-center">
+        <p>사이트 방문자</p>
+        <p>TODAY : <span>1</span> / TOTAL : <span>100</span></p>
+    </div>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="shadow p-3 mt-4 mb-2 bg-body-tertiary rounded text-center">
+            가산디지털 단지 식당
         </div>
-    </form>
-
-    <table class="table table-striped">
-        <tr>
-            <th colspan="3">
-                운영시간 09:00 ~ 17:00
-            </th>
-        </tr>
-        <tr>
-            <th>아침</th>
-            <th>점심</th>
-            <th>저녁</th>
-        </tr>
-        <tr>
-            <td>
-                <table>
-                    <tr>
-                        <td>메뉴1</td>
-                        <td>메뉴1</td>
-                    </tr>
-                    <tr>
-                        <td>메뉴2</td>
-                        <td>메뉴2</td>
-                    </tr>
-                    <tr>
-                        <td>메뉴3</td>
-                        <td>메뉴3</td>
-                    </tr>
-                </table>
-            </td>
-            <td>2</td>
-            <td>3</td>
-        </tr>
-    </table>
-
-    <div class="pt-5">
-        <button class="btn btn-danger" id="about-me">About Me</button>
-        <button class="btn btn-primary" id="insert">insert</button>
-        <button class="btn btn-success" id="deleteMe">deleteMe</button>
-        <button class="btn btn-danger" id="modify">modify</button>
+        <p class="shadow p-3 mt-1 mb-2">운영시간 <span>08:00</span> ~ <span>17:00</span></p>
+        <p class="p-3 mt-1 mb-1">가격 : <span>7000</span></p>
+<!--        <form action="/search">-->
+<!--            <div class="w-100">-->
+<!--                <div class="input-group mb-3">-->
+<!--                    <input type="text" class="form-control" placeholder="가게 검색" aria-label="Recipient's username"-->
+<!--                           aria-describedby="button-addon2">-->
+<!--                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">검색</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+    </div>
+    <div class="w-50 mt-5">
+        <table class="table table-striped text-center">
+            <tr>
+                <th>점심</th>
+            </tr>
+            <tr>
+                <td>
+                    <table class="table text-center">
+                        <tr>
+                            <td>메뉴1</td>
+                            <td>불고기</td>
+                        </tr>
+                        <tr>
+                            <td>메뉴2</td>
+                            <td>볶음밥</td>
+                        </tr>
+                        <tr>
+                            <td>메뉴3</td>
+                            <td>한우</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="pt-3 text-center">
+        <button class="btn btn-success mb-3" id="justClick">Just Click</button>
+        <p id="justCount">1</p>
     </div>
 
 </div>
@@ -73,66 +73,71 @@
   });
 
 
-</script>
-<script>
-  var httpRequest;
-  const aboutMe = document.getElementById("about-me");
-  const insert = document.getElementById("insert");
-  const deleteMe = document.getElementById("deleteMe");
-  const modify = document.getElementById("modify");
-
-  aboutMe.addEventListener("click", function () {
-    location.href = "/aboutMe";
-  });
-
-  insert.addEventListener("click", function () {
-    console.log("insert");
-    /*
-    button이 클릭되었을때 이벤트
-    textBox에 작성된 name 데이터를 가져옴
-    입력된 데이터 Json 형식으로 변경
-    통신에 사용 될 XMLHttpRequest 객체 정의
-    httpRequest의 readyState가 변화했을때 함수 실행
-    readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌
-    Post 방식으로 요청
-    Response Type을 Json으로 사전 정의
-    요청 Header에 컨텐츠 타입은 Json으로 사전 정의
-    정의된 서버에 Json 형식의 요청 Data를 포함하여 요청을 전송
-    */
-
-    var inputName = "gygygygygyugh";
-    var reqJson = new Object();
-    reqJson.name = inputName;
-    httpRequest = new XMLHttpRequest();
-
-    httpRequest.onreadystatechange = () => {
-      if (httpRequest.readyState === XMLHttpRequest.DONE) {
-        if (httpRequest.status === 200) {
-          var result = httpRequest.response;
-          alert(result);
-          // document.getElementById("name").innerText = result.name;
-          // document.getElementById("age").innerText = result.age;
-        } else {
-          alert('request에 뭔가 문제가 있어요.');
-        }
-      }
-    };
-
-    httpRequest.responseType = "json";
-    httpRequest.open('POST', '/postTest', true);
-    httpRequest.setRequestHeader('Content-Type', 'application/json');
-    httpRequest.send(JSON.stringify(reqJson));
-
-  });
-
-  deleteMe.addEventListener("click", function () {
-    console.log("deleteMe");
-  });
-
-  modify.addEventListener("click", function () {
-    console.log("modify");
+  document.getElementById("justClick").addEventListener("click", function () {
+    let justCount = document.getElementById("justCount").innerText;
+    document.getElementById("justCount").innerText = String(Number(justCount) + 1);
   });
 
 </script>
+<!--<script>-->
+<!--  var httpRequest;-->
+<!--  const aboutMe = document.getElementById("about-me");-->
+<!--  const insert = document.getElementById("insert");-->
+<!--  const deleteMe = document.getElementById("deleteMe");-->
+<!--  const modify = document.getElementById("modify");-->
+
+<!--  aboutMe.addEventListener("click", function () {-->
+<!--    location.href = "/aboutMe";-->
+<!--  });-->
+
+<!--  insert.addEventListener("click", function () {-->
+<!--    console.log("insert");-->
+<!--    /*-->
+<!--    button이 클릭되었을때 이벤트-->
+<!--    textBox에 작성된 name 데이터를 가져옴-->
+<!--    입력된 데이터 Json 형식으로 변경-->
+<!--    통신에 사용 될 XMLHttpRequest 객체 정의-->
+<!--    httpRequest의 readyState가 변화했을때 함수 실행-->
+<!--    readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌-->
+<!--    Post 방식으로 요청-->
+<!--    Response Type을 Json으로 사전 정의-->
+<!--    요청 Header에 컨텐츠 타입은 Json으로 사전 정의-->
+<!--    정의된 서버에 Json 형식의 요청 Data를 포함하여 요청을 전송-->
+<!--    */-->
+
+<!--    var inputName = "gygygygygyugh";-->
+<!--    var reqJson = new Object();-->
+<!--    reqJson.name = inputName;-->
+<!--    httpRequest = new XMLHttpRequest();-->
+
+<!--    httpRequest.onreadystatechange = () => {-->
+<!--      if (httpRequest.readyState === XMLHttpRequest.DONE) {-->
+<!--        if (httpRequest.status === 200) {-->
+<!--          var result = httpRequest.response;-->
+<!--          alert(result);-->
+<!--          // document.getElementById("name").innerText = result.name;-->
+<!--          // document.getElementById("age").innerText = result.age;-->
+<!--        } else {-->
+<!--          alert('request에 뭔가 문제가 있어요.');-->
+<!--        }-->
+<!--      }-->
+<!--    };-->
+
+<!--    httpRequest.responseType = "json";-->
+<!--    httpRequest.open('POST', '/postTest', true);-->
+<!--    httpRequest.setRequestHeader('Content-Type', 'application/json');-->
+<!--    httpRequest.send(JSON.stringify(reqJson));-->
+
+<!--  });-->
+
+<!--  deleteMe.addEventListener("click", function () {-->
+<!--    console.log("deleteMe");-->
+<!--  });-->
+
+<!--  modify.addEventListener("click", function () {-->
+<!--    console.log("modify");-->
+<!--  });-->
+
+<!--</script>-->
 </body>
 </html>
