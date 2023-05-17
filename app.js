@@ -21,6 +21,11 @@ app.listen(3000, function(){
   });
 });
 
+// nodeschedule rule 지정.
+// '초 분 시 일 월 요일(0 과 7 은 일요일)'
+// ex) '0 0 15 1 * *' <- 매월 1일 오후 3시 정각
+// const rule = '0 0 9 * * 1'; // 매주 월요일 오전 9시 정각​
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
