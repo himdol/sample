@@ -10,16 +10,16 @@ const schedule = require('node-schedule');
 
 var app = express();
 
-app.get('/', function (req, res) {
-  res.send('Hello World');
-})
+// app.get('/', function (req, res) {
+//   res.send('Hello World');
+// })
 
-app.listen(3000, function(){
-  console.log('Express start on port 3000!');
-  schedule.scheduleJob('* * * * * *', function(){
-    console.log('The answer to life, the universe, and everything!');
-  });
-});
+// app.listen(3000, function(){
+//   console.log('Express start on port 3000!');
+//   schedule.scheduleJob('* * * * * *', function(){
+//     console.log('The answer to life, the universe, and everything!');
+//   });
+// });
 
 // nodeschedule rule 지정.
 // '초 분 시 일 월 요일(0 과 7 은 일요일)'

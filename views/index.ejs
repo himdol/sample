@@ -54,6 +54,9 @@
 
     <div class="pt-5">
         <button class="btn btn-danger" id="about-me">About Me</button>
+        <button class="btn btn-primary" id="insert">insert</button>
+        <button class="btn btn-success" id="deleteMe">deleteMe</button>
+        <button class="btn btn-danger" id="modify">modify</button>
     </div>
 
 </div>
@@ -61,10 +64,6 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
 <script>
-  document.getElementById("about-me").addEventListener("click", function () {
-    location.href = "/aboutMe";
-  });
-
   let usersResult = JSON.parse('<%- result %>'); // JSON 문자열을 JavaScript 객체로 변환
   console.log(usersResult); // 사용할 수 있는 JavaScript 객체 확인
 
@@ -73,6 +72,66 @@
     console.log(user.id, user.password);
   });
 
+
+</script>
+<script>
+  var httpRequest;
+  const aboutMe = document.getElementById("about-me");
+  const insert = document.getElementById("insert");
+  const deleteMe = document.getElementById("deleteMe");
+  const modify = document.getElementById("modify");
+
+  aboutMe.addEventListener("click", function () {
+    location.href = "/aboutMe";
+  });
+
+  insert.addEventListener("click", function () {
+    console.log("insert");
+    /*
+    button이 클릭되었을때 이벤트
+    textBox에 작성된 name 데이터를 가져옴
+    입력된 데이터 Json 형식으로 변경
+    통신에 사용 될 XMLHttpRequest 객체 정의
+    httpRequest의 readyState가 변화했을때 함수 실행
+    readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌
+    Post 방식으로 요청
+    Response Type을 Json으로 사전 정의
+    요청 Header에 컨텐츠 타입은 Json으로 사전 정의
+    정의된 서버에 Json 형식의 요청 Data를 포함하여 요청을 전송
+    */
+
+    var inputName = "gygygygygyugh";
+    var reqJson = new Object();
+    reqJson.name = inputName;
+    httpRequest = new XMLHttpRequest();
+
+    httpRequest.onreadystatechange = () => {
+      if (httpRequest.readyState === XMLHttpRequest.DONE) {
+        if (httpRequest.status === 200) {
+          var result = httpRequest.response;
+          alert(result);
+          // document.getElementById("name").innerText = result.name;
+          // document.getElementById("age").innerText = result.age;
+        } else {
+          alert('request에 뭔가 문제가 있어요.');
+        }
+      }
+    };
+
+    httpRequest.responseType = "json";
+    httpRequest.open('POST', '/postTest', true);
+    httpRequest.setRequestHeader('Content-Type', 'application/json');
+    httpRequest.send(JSON.stringify(reqJson));
+
+  });
+
+  deleteMe.addEventListener("click", function () {
+    console.log("deleteMe");
+  });
+
+  modify.addEventListener("click", function () {
+    console.log("modify");
+  });
 
 </script>
 </body>

@@ -77,6 +77,33 @@ router.get('/', function(req, res, next) {
 
 });
 
+
+//ajax
+router.post('/postTest', function (req, res) {
+  console.log(req.body.name);
+
+  let stringQuery = "insert into Users values ('ungmo7', '1234')";
+
+  connection.query(stringQuery, (error, rows) => {
+    if (error) {
+      console.log(error);
+      return;
+    } else {
+      console.log(rows);
+      // 결과를 이름 지정된 객체로 변환
+      // const usersResult = rows.map(r => {
+      //   return {
+      //     id: r.id,
+      //     password: r.password,
+      //   };
+      // });
+
+      // res.render('index', { title: '구내식당'});
+    }
+  });
+
+});
+
 router.get('/aboutMe', function (req, res) {
   res.render('aboutMe', {title: '만든이'});
 });
