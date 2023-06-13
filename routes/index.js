@@ -1,8 +1,15 @@
 var express = require('express');
 var router = express.Router();
+// let calc = require('/javascripts/calc');
 var mysql = require('mysql');
 require('dotenv').config();
 const nodemailer = require('nodemailer');
+
+//todo 암호화 해보기 passmodule
+//todo 엑셀 업로드
+//todo 이메일 받아서 배치
+//todo 일주일에 대해서 메뉴 보기 (admin)
+
 
 const connection = mysql.createConnection({
   host: process.env.DATABASE_HOST,
@@ -11,6 +18,9 @@ const connection = mysql.createConnection({
   password: process.env.DATABASE_DB_PASSWORD,
   database: process.env.DATABASE_DATABASE
 });
+
+
+// console.log(calc.add(1, 2));
 
 // mail service
 // const main = async () => {
@@ -82,7 +92,7 @@ router.get('/', function(req, res, next) {
 router.post('/postTest', function (req, res) {
   console.log(req.body.name);
 
-  let stringQuery = "insert into Users values ('ungmo7', '1234')";
+  let stringQuery = "insert into Users values ('a', '1234')";
 
   connection.query(stringQuery, (error, rows) => {
     if (error) {
