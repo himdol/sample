@@ -2,9 +2,10 @@
 <html>
 <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel='stylesheet' href='css/style.css'/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <meta name="viewport" content="width=device-width">
     <meta name="viewport" content="height=device-height">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0">
@@ -12,141 +13,48 @@
 </head>
 <body>
 <div class="container d-flex flex-column justify-content-center align-items-center">
-    <h1 class="mb-3 text-primary">OOH WHOA</h1>
+    <h1 class="mb-3 text-primary">GGO NAE</h1>
     <div class="text-center">
-        <p>TODAY : <span>1</span> / TOTAL : <span>100</span></p>
-    </div>
-    <div class="d-flex flex-column justify-content-center align-items-center">
-        <div class="p-1 mt-1 mb-2 bg-body-tertiary rounded text-center">
-            <h3>가산디지털 단지 식당</h3>
+        <div class="ui labeled button" tabindex="0">
+            <div class="ui red button">
+                <i class="heart icon"></i> Like
+            </div>
+            <a class="ui basic red left pointing label">
+                8
+            </a>
+        </div>
+        <p class="">TODAY : <span>1</span> / TOTAL : <span>100</span></p>
+        <div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" id="emailText" aria-label="Text input">
+                <button class="btn btn-danger" id="getEmail">Email 받기</button>
+            </div>
         </div>
     </div>
-    <div class="w-100 mt-2">
-        <table class="table table-striped text-center">
-            <tr>
-                <th>점심 <span>가격 : <span class="price text-danger">7000</span>원</span></th>
-            </tr>
-            <tr>
-                <td>
-                    <table class="table text-center">
-                        <tr>
-                            <td>1</td>
-                            <td>잡곡밥/백미밥</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>시원도토리묵사발</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>파채바싹불고기</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>오징어김치전</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>고추마요크림미트볼</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>달달설탕토마토</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>유자차</td>
-                        </tr>
-                        <tr>
-                            <td>Side</td>
-                            <td>셀프한강라면</td>
-                        </tr>
-                        <tr>
-                            <td>Side</td>
-                            <td>포기김치</td>
-                        </tr>
-                        <tr>
-                            <td>Side</td>
-                            <td>탄산음료</td>
-                        </tr>
-                        <tr>
-                            <td>Side</td>
-                            <td>누룽지</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" id="emailText" aria-label="Text input">
-            <button class="btn btn-danger" id="applyToGetEmail">Email 받기</button>
-        </div>
-    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">가게 이름</th>
+            <th scope="col">LIKE</th>
+        </tr>
+        </thead>
+        <tbody id="main_tbody">
+        <tr>
+            <th scope="row">1</th>
+            <td>
+                테스트
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
-<!--<script>-->
-<!--  var httpRequest;-->
-<!--  const aboutMe = document.getElementById("about-me");-->
-<!--  const insert = document.getElementById("insert");-->
-<!--  const deleteMe = document.getElementById("deleteMe");-->
-<!--  const modify = document.getElementById("modify");-->
-
-<!--  aboutMe.addEventListener("click", function () {-->
-<!--    location.href = "/aboutMe";-->
-<!--  });-->
-
-<!--  insert.addEventListener("click", function () {-->
-<!--    console.log("insert");-->
-<!--    /*-->
-<!--    button이 클릭되었을때 이벤트-->
-<!--    textBox에 작성된 name 데이터를 가져옴-->
-<!--    입력된 데이터 Json 형식으로 변경-->
-<!--    통신에 사용 될 XMLHttpRequest 객체 정의-->
-<!--    httpRequest의 readyState가 변화했을때 함수 실행-->
-<!--    readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌-->
-<!--    Post 방식으로 요청-->
-<!--    Response Type을 Json으로 사전 정의-->
-<!--    요청 Header에 컨텐츠 타입은 Json으로 사전 정의-->
-<!--    정의된 서버에 Json 형식의 요청 Data를 포함하여 요청을 전송-->
-<!--    */-->
-
-<!--    var inputName = "gygygygygyugh";-->
-<!--    var reqJson = new Object();-->
-<!--    reqJson.name = inputName;-->
-<!--    httpRequest = new XMLHttpRequest();-->
-
-<!--    httpRequest.onreadystatechange = () => {-->
-<!--      if (httpRequest.readyState === XMLHttpRequest.DONE) {-->
-<!--        if (httpRequest.status === 200) {-->
-<!--          var result = httpRequest.response;-->
-<!--          alert(result);-->
-<!--          // document.getElementById("name").innerText = result.name;-->
-<!--          // document.getElementById("age").innerText = result.age;-->
-<!--        } else {-->
-<!--          alert('request에 뭔가 문제가 있어요.');-->
-<!--        }-->
-<!--      }-->
-<!--    };-->
-
-<!--    httpRequest.responseType = "json";-->
-<!--    httpRequest.open('POST', '/postTest', true);-->
-<!--    httpRequest.setRequestHeader('Content-Type', 'application/json');-->
-<!--    httpRequest.send(JSON.stringify(reqJson));-->
-
-<!--  });-->
-
-<!--  deleteMe.addEventListener("click", function () {-->
-<!--    console.log("deleteMe");-->
-<!--  });-->
-
-<!--  modify.addEventListener("click", function () {-->
-<!--    console.log("modify");-->
-<!--  });-->
-
-<!--</script>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+<script>
+    let shopList = '<%=JSON.stringify(shopList)%>'
+</script>
+<script src="js/index.js"></script>
 </body>
 </html>

@@ -3,6 +3,8 @@ var router = express.Router();
 // let calc = require('/javascripts/calc');
 var mysql = require('mysql');
 require('dotenv').config();
+const app = express();
+
 const nodemailer = require('nodemailer');
 
 //todo 암호화 해보기 passmodule
@@ -66,27 +68,39 @@ const connection = mysql.createConnection({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  /* GET home page. */
-  connection.query('SELECT * from Users', (error, rows) => {
+
+  let queryShop = "SELECT * FROM SHOP";
+
+  connection.query(queryShop, (error, rows) => {
     if (error) {
       console.log(error);
       return;
     } else {
+      console.log("rows");
       console.log(rows);
       // 결과를 이름 지정된 객체로 변환
-      const usersResult = rows.map(r => {
+      const shopList = rows.map(r => {
         return {
-          id: r.id,
-          password: r.password,
+          SHOP_ID: r.SHOP_ID,
+          ADMIN_ID: r.ADMIN_ID,
+          SHOP_NAME_KR: r.SHOP_NAME_KR,
+          SHOP_NAME_EN: r.SHOP_NAME_EN,
+          SHOP_ADDRESS: r.SHOP_ADDRESS,
+          SHOP_NUMBER: r.SHOP_NUMBER,
+          MANAGE_TF: r.MANAGE_TF,
+          CREATE_BY: r.CREATE_BY,
+          CREATE_DATE: r.CREATE_DATE,
+          UPDATE_BY: r.UPDATE_BY,
+          UPDATE_DATE: r.UPDATE_DATE
         };
       });
 
-      res.render('index', { title: '구내식당', result: JSON.stringify(usersResult)});
+      res.render('index', { title: '구내식당', 'shopList': shopList});
     }
   });
 
 });
-
+// app.use('/static', express.static('public'));
 
 //ajax
 router.post('/postTest', function (req, res) {
